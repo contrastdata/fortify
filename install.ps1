@@ -35,7 +35,7 @@ $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = `
     [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-$repository = 'EmbrasureAI/fortify'
+$repository = 'contrastdata/fortify'
 $target = 'x86_64-pc-windows-msvc'
 $maximumArchiveBytes = 268435456
 $maximumArchiveEntries = 4096

@@ -1,7 +1,7 @@
 {
     "version": "@VERSION@",
     "description": "Validate dbt changes against production warehouse data",
-    "homepage": "https://github.com/EmbrasureAI/fortify",
+    "homepage": "https://github.com/contrastdata/fortify",
     "license": "Apache-2.0",
     "architecture": {
         "64bit": {
@@ -15,12 +15,12 @@
         "bin\\embrasure.exe"
     ],
     "checkver": {
-        "github": "https://github.com/EmbrasureAI/fortify"
+        "github": "https://github.com/contrastdata/fortify"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/EmbrasureAI/fortify/releases/download/v$version/fortify-$version-x86_64-pc-windows-msvc.zip"
+                "url": "https://github.com/contrastdata/fortify/releases/download/v$version/fortify-$version-x86_64-pc-windows-msvc.zip"
             }
         },
         "extract_dir": "fortify-$version-x86_64-pc-windows-msvc"

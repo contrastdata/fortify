@@ -28,8 +28,8 @@ The CLI itself makes only these connections:
 - The configured Databricks workspace host for Statement Execution API requests.
 - `https://bigquery.googleapis.com` for BigQuery jobs and temporary dataset lifecycle requests, plus the Google OAuth token or Google Cloud metadata endpoint selected by Application Default Credentials.
 - The configured Metabase URL when the optional Metabase integration is enabled.
-- `https://api.github.com/repos/EmbrasureAI/fortify/releases/latest` for `fortify update --check`, `fortify update`, and the gated doctor notice.
-- `https://github.com/EmbrasureAI/fortify/releases/download/...` when `fortify update` downloads a release and its checksums.
+- `https://api.github.com/repos/contrastdata/fortify/releases/latest` for `fortify update --check`, `fortify update`, and the gated doctor notice.
+- `https://github.com/contrastdata/fortify/releases/download/...` when `fortify update` downloads a release and its checksums.
 
 There is no telemetry or analytics SDK. `fortify update` is opt-in. Human, interactive `fortify doctor` output may check for a release at most once every 24 hours. The notice is disabled for JSON output, piped stderr, `CI`, or `NO_UPDATE_NOTIFIER`, and network failures are silent. The local `dbt` process may connect to the configured warehouse or download packages according to the dbt project's own configuration. Normal local validation does not contact Fortify.
 
@@ -101,7 +101,7 @@ grep " ${archive}$" SHA256SUMS | shasum -a 256 --check
 Verify its GitHub-signed build provenance:
 
 ```sh
-gh attestation verify fortify-*.tar.gz --repo EmbrasureAI/fortify
+gh attestation verify fortify-*.tar.gz --repo contrastdata/fortify
 ```
 
 On Windows, WinGet and Scoop verify the ZIP against the hash in their reviewed package manifest. The direct `install.ps1` downloads only from the Fortify GitHub repository, requires exactly one matching entry in `SHA256SUMS`, rejects unsafe or oversized ZIP contents, verifies the executable version and bundled SQLGlot wheel, then replaces the current-user installation with rollback on failure. `fortify update` downloads and verifies the same ZIP, writes the exact installer script embedded in the running binary to a temporary directory, and launches it with a process-scoped `Bypass` policy. The helper revalidates the archive after the CLI exits before performing the same atomic replacement. It does not change the user's or machine's execution policy.

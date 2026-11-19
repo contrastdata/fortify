@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://embrasure.ai">
-    <img src="docs/assets/embrasure-banner.svg" alt="Embrasure" width="100%">
+  <a href="https://contrastdb.com">
+    <img src="docs/assets/contrast-banner.svg" alt="Contrast Fortify" width="100%">
   </a>
 </p>
 
@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/EmbrasureAI/embrasure-cli/actions/workflows/ci.yml"><img src="https://github.com/EmbrasureAI/embrasure-cli/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/EmbrasureAI/embrasure-cli/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/EmbrasureAI/embrasure-cli/actions/workflows/github-code-scanning/codeql/badge.svg" alt="CodeQL"></a>
+  <a href="https://github.com/contrastdata/fortify/actions/workflows/ci.yml"><img src="https://github.com/contrastdata/fortify/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
+  <a href="https://github.com/contrastdata/fortify/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/contrastdata/fortify/actions/workflows/github-code-scanning/codeql/badge.svg" alt="CodeQL"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2C2721" alt="License: Apache-2.0"></a>
 </p>
 
@@ -21,8 +21,16 @@
   <a href="#snowflake-quickstart">Quickstart</a> ·
   <a href="#github-actions">GitHub Actions</a> ·
   <a href="CONTRIBUTING.md">Contributing</a> ·
-  <a href="https://github.com/EmbrasureAI/embrasure-cli/issues">Issues</a>
+  <a href="https://github.com/contrastdata/fortify/issues">Issues</a>
 </p>
+
+<p align="center"><sub>
+  We like building things for the data community, and Fortify is one of them. If
+  it's useful to you, star the repo so more people find it. We post what we're
+  working on at <a href="https://contrastdb.com">contrastdb.com</a>, on
+  <a href="https://x.com/contrastdata">X</a> and on
+  <a href="https://www.linkedin.com/company/embrasure/">LinkedIn</a>.
+</sub></p>
 
 Fortify validates dbt pull requests locally against Snowflake, Databricks, and
 BigQuery. It builds changed models in temporary schemas, compares them with
@@ -35,8 +43,8 @@ production, and reports what needs a fix before review. Written in Rust.
 - **Compare with production.** Run dbt tests and compare schema, row counts,
   null rates, cardinality, ranges, and primary keys.
 - **See downstream impact.** Show affected models and columns.
-- **Connect directly.** Use your warehouse credentials, with no Embrasure account
-  or data sent to Embrasure.
+- **Connect directly.** Use your warehouse credentials, with no Contrast account
+  or data sent to Contrast.
 - **Check and fix with your agent.** Use the [`verify`](.agents/skills/verify/SKILL.md)
   skill to run the check-and-fix loop.
 
@@ -51,7 +59,7 @@ then the Fortify file, then the legacy file. `FORTIFY_*` variables take preceden
 over their legacy equivalents. Existing credentials and warehouse cleanup markers
 stay in place.
 
-Update GitHub workflows to `uses: EmbrasureAI/fortify@v1`. GitHub does not
+Update GitHub workflows to `uses: contrastdata/fortify@v1`. GitHub does not
 redirect Actions after a repository rename. Existing pinned CLI versions remain
 available. If an older standalone updater only installs `embrasure`, rerun the
 installer below to add `fortify`.
@@ -74,7 +82,7 @@ python -m pip install "dbt-core>=1.5,<2" "dbt-snowflake>=1.5,<2" "sqlglot>=30,<3
 Then install Fortify on macOS or Linux with Homebrew:
 
 ```sh
-brew install embrasureai/tap/fortify
+brew install contrastdata/tap/fortify
 fortify init
 fortify auth login
 fortify doctor
@@ -165,7 +173,7 @@ Application Default Credentials also support `GOOGLE_APPLICATION_CREDENTIALS` an
 If you do not use Homebrew, use the installer on macOS or Linux:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/EmbrasureAI/fortify/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/contrastdata/fortify/main/install.sh | sh
 ```
 
 The installer writes to `/usr/local/bin` when writable, otherwise `~/.local/bin`. Set `FORTIFY_INSTALL_DIR` to choose another directory.
@@ -177,7 +185,7 @@ Download the PowerShell installer from GitHub Releases, inspect it, then run it:
 
 ```powershell
 $installer = Join-Path $env:TEMP 'fortify-install.ps1'
-Invoke-WebRequest https://github.com/EmbrasureAI/fortify/releases/latest/download/install.ps1 -OutFile $installer
+Invoke-WebRequest https://github.com/contrastdata/fortify/releases/latest/download/install.ps1 -OutFile $installer
 Get-Content $installer
 Unblock-File $installer
 & $installer
@@ -198,7 +206,7 @@ Uninstalling removes Fortify and its `PATH` entry, but keeps your configuration,
 Scoop users can install from Fortify's official bucket:
 
 ```powershell
-scoop bucket add fortify https://github.com/EmbrasureAI/scoop-bucket
+scoop bucket add fortify https://github.com/contrastdata/scoop-bucket
 scoop install fortify/fortify
 ```
 
@@ -348,7 +356,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 -m pip install -r requirements.txt
-      - uses: EmbrasureAI/fortify@v1
+      - uses: contrastdata/fortify@v1
       - run: fortify check --base origin/main --json
         env:
           SNOWFLAKE_PROGRAMMATIC_ACCESS_TOKEN: ${{ secrets.SNOWFLAKE_PROGRAMMATIC_ACCESS_TOKEN }}
@@ -443,7 +451,7 @@ The opt-in Snowflake suite uses `FORTIFY_RUN_SNOWFLAKE_TESTS=1` and the `FORTIFY
 
 Bug reports, documentation improvements, and code contributions are welcome.
 Read [Contributing](CONTRIBUTING.md) for development and review expectations.
-Open an [issue](https://github.com/EmbrasureAI/embrasure-cli/issues) to report a bug
+Open an [issue](https://github.com/contrastdata/fortify/issues) to report a bug
 or discuss a substantial change.
 
 ## License

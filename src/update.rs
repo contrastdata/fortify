@@ -15,8 +15,8 @@ use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
-const LATEST_RELEASE: &str = "https://api.github.com/repos/EmbrasureAI/fortify/releases/latest";
-const RELEASE_DOWNLOADS: &str = "https://github.com/EmbrasureAI/fortify/releases/download";
+const LATEST_RELEASE: &str = "https://api.github.com/repos/contrastdata/fortify/releases/latest";
+const RELEASE_DOWNLOADS: &str = "https://github.com/contrastdata/fortify/releases/download";
 #[cfg(windows)]
 const WINDOWS_INSTALLER: &str = include_str!("../install.ps1");
 
@@ -363,7 +363,7 @@ fn brew_formula(executable: &Path) -> &'static str {
     if executable.to_string_lossy().contains("/Cellar/embrasure/") {
         "embrasureai/tap/embrasure"
     } else {
-        "embrasureai/tap/fortify"
+        "fortify"
     }
 }
 

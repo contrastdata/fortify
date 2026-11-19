@@ -24,7 +24,7 @@ if (Test-Path -LiteralPath $OutputDirectory) {
 }
 
 $archiveName = "fortify-${Version}-x86_64-pc-windows-msvc.zip"
-$archiveUrl = "https://github.com/EmbrasureAI/fortify/releases/download/v${Version}/${archiveName}"
+$archiveUrl = "https://github.com/contrastdata/fortify/releases/download/v${Version}/${archiveName}"
 $packageRoot = "fortify-${Version}-x86_64-pc-windows-msvc"
 $replacements = @{
     '@VERSION@' = $Version

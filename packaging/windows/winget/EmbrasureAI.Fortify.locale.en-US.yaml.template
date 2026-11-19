@@ -4,13 +4,13 @@ PackageIdentifier: EmbrasureAI.Fortify
 PackageVersion: @VERSION@
 PackageLocale: en-US
 Publisher: Embrasure, Inc.
-PublisherUrl: https://embrasure.ai
-PublisherSupportUrl: https://github.com/EmbrasureAI/fortify/issues
+PublisherUrl: https://contrastdb.com
+PublisherSupportUrl: https://github.com/contrastdata/fortify/issues
 Author: Embrasure, Inc.
 PackageName: Fortify
-PackageUrl: https://github.com/EmbrasureAI/fortify
+PackageUrl: https://github.com/contrastdata/fortify
 License: Apache-2.0
-LicenseUrl: https://github.com/EmbrasureAI/fortify/blob/main/LICENSE
+LicenseUrl: https://github.com/contrastdata/fortify/blob/main/LICENSE
 Copyright: Copyright 2026 Embrasure, Inc.
 ShortDescription: Validate dbt changes against production warehouse data
 Description: >-
@@ -23,9 +23,9 @@ Tags:
 - data-quality
 - dbt
 - snowflake
-ReleaseNotesUrl: https://github.com/EmbrasureAI/fortify/releases/tag/v@VERSION@
+ReleaseNotesUrl: https://github.com/contrastdata/fortify/releases/tag/v@VERSION@
 Documentations:
 - DocumentLabel: Documentation
-  DocumentUrl: https://github.com/EmbrasureAI/fortify#readme
+  DocumentUrl: https://github.com/contrastdata/fortify#readme
 ManifestType: defaultLocale
 ManifestVersion: 1.12.0

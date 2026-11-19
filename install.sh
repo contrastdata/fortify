@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-repository="${FORTIFY_REPOSITORY-${EMBRASURE_REPOSITORY:-EmbrasureAI/fortify}}"
+repository="${FORTIFY_REPOSITORY-${EMBRASURE_REPOSITORY:-contrastdata/fortify}}"
 version="${FORTIFY_VERSION-${EMBRASURE_VERSION:-}}"
 if [ -z "$version" ]; then
   version="$(curl -fsSL -H 'Accept: application/vnd.github+json' -H 'User-Agent: fortify-installer' "https://api.github.com/repos/${repository}/releases/latest" | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"v\{0,1\}\([^"]*\)".*/\1/p' | head -n 1)"

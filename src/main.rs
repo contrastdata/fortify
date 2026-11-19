@@ -161,7 +161,7 @@ enum Command {
         #[cfg_attr(feature = "cloud-demo", arg(conflicts_with = "cloud"))]
         dry_run: bool,
         #[cfg(feature = "cloud-demo")]
-        /// Hand the exact validated working state to a durable Embrasure Cloud agent.
+        /// Hand the exact validated working state to a durable Contrast Cloud agent.
         #[arg(long)]
         cloud: bool,
         #[cfg(feature = "cloud-demo")]
@@ -188,7 +188,7 @@ enum Command {
         command: AuthCommand,
     },
     #[cfg(feature = "cloud-demo")]
-    /// Manage the Embrasure Cloud demo session and durable runs.
+    /// Manage the Contrast Cloud demo session and durable runs.
     Cloud {
         #[command(subcommand)]
         command: CloudCommand,
@@ -244,12 +244,12 @@ enum AuthCommand {
 enum CloudCommand {
     /// Sign in through the browser and save a separate OS-keychain session.
     Login,
-    /// Show the signed-in Embrasure identity and workspace.
+    /// Show the signed-in Contrast identity and workspace.
     Whoami {
         #[arg(long)]
         json: bool,
     },
-    /// Remove and revoke the saved Embrasure Cloud session.
+    /// Remove and revoke the saved Contrast Cloud session.
     Logout,
     /// Show the latest handoff or a specified durable run.
     Status {
@@ -426,7 +426,7 @@ async fn main() -> ExitCode {
                 }
                 let snapshot = snapshot.expect("cloud snapshots are prepared before local review");
                 cloud::print_snapshot(&snapshot);
-                let progress = cloud::Progress::start("Handing off to Embrasure Cloud");
+                let progress = cloud::Progress::start("Handing off to Contrast Cloud");
                 let receipt = cloud::handoff(
                     &snapshot,
                     &report,
@@ -551,7 +551,7 @@ async fn main() -> ExitCode {
             CloudCommand::Login => match cloud::login().await {
                 Ok(session) => {
                     println!(
-                        "Signed in to Embrasure Cloud.\nWorkspace: {}",
+                        "Signed in to Contrast Cloud.\nWorkspace: {}",
                         session.workspace_id
                     );
                     ExitCode::SUCCESS
@@ -586,7 +586,7 @@ async fn main() -> ExitCode {
             },
             CloudCommand::Logout => match cloud::logout().await {
                 Ok(()) => {
-                    println!("Signed out of Embrasure Cloud.");
+                    println!("Signed out of Contrast Cloud.");
                     ExitCode::SUCCESS
                 }
                 Err(error) => fail(error),
