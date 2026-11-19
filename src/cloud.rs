@@ -394,7 +394,7 @@ async fn send_handoff(session: &CloudSession, payload: &Value) -> Result<reqwest
         .json(&payload)
         .send()
         .await
-        .context("could not reach Embrasure Cloud")
+        .context("could not reach Contrast Cloud")
 }
 
 async fn parse_handoff(
@@ -452,7 +452,7 @@ pub async fn login() -> Result<CloudSession> {
         .append_pair("client", "cli")
         .append_pair("client_version", env!("CARGO_PKG_VERSION"));
     eprintln!(
-        "Opening Embrasure Cloud sign-in in your browser.\n{}",
+        "Opening Contrast Cloud sign-in in your browser.\n{}",
         url.as_str()
     );
     let _ = webbrowser::open(url.as_str());
@@ -493,7 +493,7 @@ pub async fn login() -> Result<CloudSession> {
     loopback::respond(
         &mut stream,
         "200 OK",
-        "Embrasure Cloud is connected",
+        "Contrast Cloud is connected",
         "You can close this tab and return to your terminal.",
     )
     .await?;
@@ -555,7 +555,7 @@ pub async fn logout() -> Result<()> {
         Ok(()) | Err(keyring::Error::NoEntry) => Ok(()),
         Err(error) => Err(keyring_error(
             error,
-            "could not remove the Embrasure Cloud keychain session",
+            "could not remove the Contrast Cloud keychain session",
         )),
     }
 }
@@ -573,7 +573,7 @@ async fn valid_session() -> Result<CloudSession> {
         });
     }
     let session =
-        load_session().context("not signed in to Embrasure Cloud; run `fortify cloud login`")?;
+        load_session().context("not signed in to Contrast Cloud; run `fortify cloud login`")?;
     let expires = DateTime::parse_from_rfc3339(&session.expires_at)?.with_timezone(&Utc);
     if expires > Utc::now() + chrono::Duration::seconds(30) {
         return Ok(session);
@@ -625,16 +625,16 @@ async fn api_get(session: &CloudSession, path: &str, query: &[(&str, &str)]) -> 
     let body = response.text().await.unwrap_or_default();
     if !status.is_success() {
         bail!(
-            "Embrasure Cloud request failed ({status}): {}",
+            "Contrast Cloud request failed ({status}): {}",
             api_error(&body)
         );
     }
-    serde_json::from_str(&body).context("Embrasure Cloud returned invalid JSON")
+    serde_json::from_str(&body).context("Contrast Cloud returned invalid JSON")
 }
 
 fn keychain() -> Result<Entry> {
     Entry::new(KEYCHAIN_SERVICE, KEYCHAIN_ACCOUNT)
-        .map_err(|error| keyring_error(error, "could not open the Embrasure Cloud keychain entry"))
+        .map_err(|error| keyring_error(error, "could not open the Contrast Cloud keychain entry"))
 }
 
 fn save_session(session: &CloudSession) -> Result<()> {
@@ -643,7 +643,7 @@ fn save_session(session: &CloudSession) -> Result<()> {
         .map_err(|error| {
             keyring_error(
                 error,
-                "could not save the Embrasure Cloud session in the OS keychain",
+                "could not save the Contrast Cloud session in the OS keychain",
             )
         })
 }
@@ -651,8 +651,8 @@ fn save_session(session: &CloudSession) -> Result<()> {
 fn load_session() -> Result<CloudSession> {
     let value = keychain()?
         .get_password()
-        .map_err(|error| keyring_error(error, "no Embrasure Cloud session is stored"))?;
-    serde_json::from_str(&value).context("the Embrasure Cloud keychain session is invalid")
+        .map_err(|error| keyring_error(error, "no Contrast Cloud session is stored"))?;
+    serde_json::from_str(&value).context("the Contrast Cloud keychain session is invalid")
 }
 
 fn keyring_error(error: keyring::Error, context: &str) -> anyhow::Error {

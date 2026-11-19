@@ -19,7 +19,7 @@ The executable statically links the Microsoft C runtime, so users do not need to
 After the GitHub release exists:
 
 1. Extract `fortify-<version>-windows-package-manifests.zip`.
-2. Publish `scoop/fortify.json` to `EmbrasureAI/scoop-bucket` as `bucket/fortify.json`.
+2. Publish `scoop/fortify.json` to `contrastdata/scoop-bucket` as `bucket/fortify.json`.
 3. Submit the three `EmbrasureAI.Fortify.*` files under `winget/` to `microsoft/winget-pkgs` at `manifests/e/EmbrasureAI/Fortify/<version>/`.
 4. Verify `scoop install fortify/fortify` and `winget install --id EmbrasureAI.Fortify --exact` on clean Windows 11 machines.
 

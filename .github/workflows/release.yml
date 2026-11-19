@@ -339,7 +339,7 @@ jobs:
       - name: Check out Homebrew tap
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: EmbrasureAI/homebrew-tap
+          repository: contrastdata/homebrew-tap
           token: ${{ secrets.TAP_PUSH_TOKEN }}
           path: tap
       - name: Regenerate formula
