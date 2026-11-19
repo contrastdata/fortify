@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://contrastdb.com">
-    <img src="docs/assets/contrast-banner.svg" alt="Contrast" width="100%">
+    <img src="docs/assets/contrast-banner.svg" alt="Contrast Fortify" width="100%">
   </a>
 </p>
 
